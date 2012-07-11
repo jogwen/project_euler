@@ -68,9 +68,9 @@ def strip_divisible_by(intList, factor):
             newIntList.append(i)
     return newIntList
             
-def primes_up_to(max, smaller_primes=[]):
+def primes_up_to(max):
     """
-    Returns a list of primes not exceeding max, and building upon smaller_primes if supplied
+    Returns a list of primes not exceeding max.
     
     >>> primes_up_to(11)
     [2, 3, 5, 7, 11]
