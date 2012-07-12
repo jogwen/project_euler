@@ -2,6 +2,8 @@
 
 # Utility functions for Project Euler problems
 
+import math
+
 def isfactorof(factor_candidate, n):
     """
     Returns True if factor_candidate is a factor of n, else returns False
@@ -80,6 +82,7 @@ def primes_up_to(max):
     while len(candidates) > 0:
         p = candidates[0]
         primes.append(p)
+        #print primes[:10], "...", len(primes)
         del(candidates[0])
         candidates = strip_divisible_by(candidates, p)
     return primes        
@@ -88,6 +91,22 @@ def largest_prime_factor_of(number):
     """
     Return the largest prime factor of number.
     """
+    count = 0
+    prime_factors = []
+    max = min(10000, int(math.floor(math.sqrt(number))))
+    primes = primes_up_to(max)
+    while number > 1:
+        count += 1
+        for p in primes:
+            if number % p == 0:
+                prime_factors.append(p)
+                number = number/p
+                break
+        if len(prime_factors) != count:
+            raise Exception, "FAIL: We've run out of primes!"
+    prime_factors.sort()
+    print prime_factors
+    return prime_factors[-1]
 
 if __name__ == "__main__":
     import doctest
